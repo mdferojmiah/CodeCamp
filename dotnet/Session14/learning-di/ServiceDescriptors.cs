@@ -17,4 +17,6 @@ public class ServiceDescriptors(
     public Type ServiceType { get; set; } = serviceType;
     public Type ImplementationType { get; set; } = implementationType;
     public ServiceLifeTime LifeTime { get; set; } = lifeTime;
+    public object? SingletonInstance { get; set; }
+    public object SingletonLock { get; set; } = new();
 }
