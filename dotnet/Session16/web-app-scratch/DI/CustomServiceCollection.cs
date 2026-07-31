@@ -1,5 +1,4 @@
-
-namespace learning_di;
+namespace web_app_scratch.DI;
 
 public class CustomServiceCollection
 {
