@@ -1,0 +1,1 @@
+{"name":"Local: factorial","url":"d:\\Code\\C#\\CodeCamp\\LogicCamp\\Session03\\factorial.cpp","tests":[{"id":1785504821579,"input":"5","output":"120"},{"id":1785504828469,"input":"4","output":"24"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Code\\C#\\CodeCamp\\LogicCamp\\Session03\\factorial.cpp","group":"local","local":true}

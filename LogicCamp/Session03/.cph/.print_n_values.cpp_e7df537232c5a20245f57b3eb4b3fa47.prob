@@ -1,0 +1,1 @@
+{"name":"Local: print_n_values","url":"d:\\Code\\C#\\CodeCamp\\LogicCamp\\Session03\\print_n_values.cpp","tests":[{"id":1785500548812,"input":"5","output":"1 2 3 4 5"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Code\\C#\\CodeCamp\\LogicCamp\\Session03\\print_n_values.cpp","group":"local","local":true}

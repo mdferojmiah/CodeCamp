@@ -1,0 +1,1 @@
+{"name":"Local: reverse_array","url":"d:\\Code\\C#\\CodeCamp\\LogicCamp\\Session03\\reverse_array.cpp","tests":[{"id":1785508952065,"input":"5\n1 2 3 4 5","output":"5 4 3 2 1"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Code\\C#\\CodeCamp\\LogicCamp\\Session03\\reverse_array.cpp","group":"local","local":true}
