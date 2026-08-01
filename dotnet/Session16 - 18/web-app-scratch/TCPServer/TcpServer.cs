@@ -2,6 +2,8 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using web_app_scratch.Core;
+using web_app_scratch.DI;
+using web_app_scratch.ModelBinder;
 
 namespace web_app_scratch.TCPServer;
 
@@ -12,17 +14,22 @@ public class RequestContext
     public string Version { get; set; } = string.Empty;
     public Dictionary<string, string> Headers = [];
     public string? Body { get; set; }
+    public string? Response { get; set; }
 }
 
 public class TcpServer
 {
     private readonly int _port;
     private readonly Router _router;
+    private readonly ServiceProvider _services;
+    private readonly Func<RequestContext, Task> _pipeline;
 
-    public TcpServer(int port, Router router)
+    public TcpServer(int port, Router router, ServiceProvider services, Func<RequestContext, Task> pipeline)
     {
         _port = port;
         _router = router;
+        _services = services;
+        _pipeline = pipeline;
     }
 
     public async Task StartAsync()
@@ -49,9 +56,28 @@ public class TcpServer
         var context = HttpHeaderParser.Parse(rawHeader);
         context.Body = HttpBodyParser.Parse(rawBody);
 
-        var responseText = _router.Resolve(context);
-
+        // var invoker = new HandlerInvoker(_services);
+        // var responseText = _router.Resolve(context, invoker);
         // var responseText = $"Received a {context.Method} request on {context.Path}";
+
+        try
+        {
+            await _pipeline(context);
+        }
+        catch(HttpException ex)
+        {
+            await SendError(stream, ex.StatusCode, ex.Message);
+            client.Close();
+            return;
+        }
+        catch(Exception ex)
+        {
+            await SendError(stream, 500, ex.Message);
+            client.Close();
+            return;
+        }
+
+        var responseText = context.Response ?? "";
 
         var responseInByte = Encoding.UTF8.GetBytes(
             "HTTP/1.1 200 OK\r\n" +
@@ -63,4 +89,23 @@ public class TcpServer
 
         await stream.WriteAsync(responseInByte);
     }
+
+    private async Task SendError(NetworkStream stream, int statusCode, string message)
+    {
+        var body = $"{statusCode} {message}";
+        var response = Encoding.UTF8.GetBytes(
+            $"HTTP/1.1 {statusCode} {GetStatusText(statusCode)}\r\n" +
+            "Content-Length: " + body.Length + "\r\n\r\n" + 
+            body
+        );
+        await stream.WriteAsync(response);
+    }
+
+    private static string GetStatusText(int statusCode) => statusCode switch 
+    {
+        400 => "Bad Request",
+        413 => "Request Entity Too Large",
+        500 => "Internal Server Error",
+        _ => "Unknown"
+    };
 }

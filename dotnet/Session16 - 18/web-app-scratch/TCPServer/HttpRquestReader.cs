@@ -58,9 +58,9 @@ public class HttpRequestReader
         foreach(var line in headerText.Split("\r\n")) //spliting the header by new lines
         {
             //getting the content-length to parse body from strem
-            if (line.StartsWith("Content-Length", StringComparison.OrdinalIgnoreCase))
+            if (line.StartsWith("Content-Length:", StringComparison.OrdinalIgnoreCase))
             {
-                _ = int.TryParse(line["Content-Length".Length..].Trim(), out contentLength);
+                _ = int.TryParse(line["Content-Length:".Length..].Trim(), out contentLength);
                 break;
             }
         }

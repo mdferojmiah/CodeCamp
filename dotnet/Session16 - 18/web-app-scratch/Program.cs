@@ -7,6 +7,13 @@ builder.Services.AddSingleton<ITest, Test>();
 
 var app = builder.Build();
 
+app.Use(async (ctx, next) =>
+{
+    Console.WriteLine($"{ctx.Method} {ctx.Path}");
+    await next(ctx);
+    Console.WriteLine($"=> {ctx.Response}");
+});
+
 //minimal apis
 app.MapGet("/test", (RequestContext context) =>
 {
@@ -15,7 +22,15 @@ app.MapGet("/test", (RequestContext context) =>
     return "OK";
 });
 
-await app.RunAsync();
+app.MapGet("/users", (CreateUserRequest request, ITest test) =>
+{
+    //var test = app.Services.GetRequiredService<ITest>();
+    test.Print();
+    Console.WriteLine($"Name: {request.Name} | Email: {request.Email} | Age: {request.Age}");
+    return "OK";
+});
+
+await app.RunAsync(5005);
 
 public interface ITest
 {
@@ -29,3 +44,5 @@ public class Test : ITest
         Console.WriteLine($"Random Test Service!");
     }
 }
+
+public record CreateUserRequest(string Name, string Email, int Age);
