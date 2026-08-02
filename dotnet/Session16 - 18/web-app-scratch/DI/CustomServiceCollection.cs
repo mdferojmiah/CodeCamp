@@ -1,3 +1,5 @@
+using System.Reflection;
+
 namespace web_app_scratch.DI;
 
 public class CustomServiceCollection
@@ -19,6 +21,16 @@ public class CustomServiceCollection
         _serviceDescriptors.Add(descriptor);
     }
 
+    public void AddTransient(Type TServiceType, Type TImplementationType)
+    {
+        var descriptor = new ServiceDescriptors(
+            TServiceType,
+            TImplementationType,
+            ServiceLifeTime.Transient
+        );   
+        _serviceDescriptors.Add(descriptor);
+    }
+
     public void AddSingleton<TserviceType, TimplementationType>()
     {
         var descriptor = new ServiceDescriptors(
@@ -37,6 +49,15 @@ public class CustomServiceCollection
             ServiceLifeTime.Scoped
         );
         _serviceDescriptors.Add(descriptor);
+    }
+
+    public void AddControllers()
+    {
+        var controllers = Assembly.GetExecutingAssembly().GetTypes().Where(ct => ct.Name.EndsWith("Controller") && ct.IsClass);
+        foreach(var controller in controllers)
+        {
+            AddTransient(controller, controller);
+        }
     }
 
     public ServiceProvider BuildServiceProvider()

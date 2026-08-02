@@ -2,10 +2,12 @@
 using web_app_scratch.TCPServer;
 
 var builder = WebApplicationFactory.CreateBuilder();
+builder.Services.AddControllers();
 builder.Services.AddSingleton<ITest, Test>();
 
 
 var app = builder.Build();
+app.MapControllers();
 
 app.Use(async (ctx, next) =>
 {
@@ -22,7 +24,7 @@ app.MapGet("/test", (RequestContext context) =>
     return "OK";
 });
 
-app.MapGet("/users", (CreateUserRequest request, ITest test) =>
+app.MapPost("/users", (CreateUserRequest request, ITest test) =>
 {
     //var test = app.Services.GetRequiredService<ITest>();
     test.Print();

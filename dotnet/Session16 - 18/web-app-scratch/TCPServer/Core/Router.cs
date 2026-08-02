@@ -15,6 +15,13 @@ public class Router
         return endPoint;
     }
 
+    public EndPoint MapPost(string path, Delegate handler)
+    {
+        var endPoint = new EndPoint(path, "POST", handler);
+        _endpoints.Add(endPoint);
+        return endPoint;
+    }
+
     public string Resolve(RequestContext context, HandlerInvoker invoker)
     {
         var endPoint = _endpoints.FirstOrDefault(ep => ep.Mathces(context));

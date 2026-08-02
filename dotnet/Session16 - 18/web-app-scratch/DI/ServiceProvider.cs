@@ -81,6 +81,12 @@ public class ServiceProvider
         return Activator.CreateInstance(implType)!;
     }
 
+    public List<Type> GetControllers()
+    {
+        return _serviceDescriptors.Where(x => x.ServiceType.Name.EndsWith("Controller"))
+                            .Select(x => x.ServiceType).ToList();
+    }
+
     internal void DisposeScopedInstances()
     {
         if(_scopedInstances == null) return;
