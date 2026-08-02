@@ -1,6 +1,7 @@
 *.sln
 Assignments/
 .vscode/
+.cph/
 
 bin/
 obj/
