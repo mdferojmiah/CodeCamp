@@ -33,9 +33,11 @@ void insertAtLast(Node* &head, int value){
 
 void printSLL(Node* node){
     while(node != nullptr){
-        cout << node->value << "->";
+        cout << node->value;
+        if(node->adressOfNextNode != nullptr) cout << "->";
         node = node->adressOfNextNode;
     }
+    cout << "\n";
 }
 
 void removeNode(Node* &node, int index){
@@ -80,20 +82,41 @@ void updateNode(Node* &node, int index, int value){
     }
 }
 
+void reverseSLL(Node* &head){
+    Node* currNode = head;
+    Node* prev = nullptr;
+    Node* next = nullptr;
+
+    while(currNode != nullptr){
+        next = currNode->adressOfNextNode;
+        currNode->adressOfNextNode = prev;
+        prev = currNode;
+        currNode = next;
+    }
+    head = prev;
+}
+
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
 
+    int n;
     Node* SLL = nullptr;
+    // while (cin >> n)
+    // {
+    //     insertAtLast(SLL, n);
+    // }
     insertAtLast(SLL, 10);
     insertAtLast(SLL, 20);
     insertAtLast(SLL, 30);
     insertAtLast(SLL, 40);
+    insertAtLast(SLL, 50);
+    
     printSLL(SLL);
-    cout << "\n";
 
     //removeNode(SLL, 4);
-    updateNode(SLL, 0, 100);
+    // updateNode(SLL, 0, 100);
+    reverseSLL(SLL);
     
     printSLL(SLL);
 
