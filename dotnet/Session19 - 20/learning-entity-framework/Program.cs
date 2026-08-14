@@ -27,18 +27,19 @@ app.MapGet("/users", (AppDbContext dbContext) =>
     };
 
     dbContext.Persons.Add(newPerson);
+    //dbContext.Persons.AsNoTracking();
 
-    // //change tracker state checking
-    // Console.WriteLine("-----After Add-----");
-    // var afterAdd = dbContext.ChangeTracker.Entries().Select(x => new
-    // {
-    //     EntityName = x.Entity.GetType().Name,
-    //     State = x.State.ToString()
-    // });
-    // foreach(var entity in afterAdd)
-    // {
-    //     Console.WriteLine($"EntityName: {entity.EntityName} | State: {entity.State}");
-    // }
+    //change tracker state checking
+    Console.WriteLine("-----After Add-----");
+    var afterAdd = dbContext.ChangeTracker.Entries().Select(x => new
+    {
+        EntityName = x.Entity.GetType().Name,
+        State = x.State.ToString()
+    });
+    foreach(var entity in afterAdd)
+    {
+        Console.WriteLine($"EntityName: {entity.EntityName} | State: {entity.State}");
+    }
 
     dbContext.SaveChanges();
 
@@ -219,6 +220,7 @@ app.MapGet("/lazy-loading", (AppDbContext dbContext) =>
     var student = dbContext.Students.FirstOrDefault();
     var enrollments = student?.Enrollments;
 
+
     return Results.Ok(new
     {
         StudenId = student?.Id,
@@ -230,6 +232,7 @@ app.MapGet("/lazy-loading", (AppDbContext dbContext) =>
         })
     });
 });
+
 
 app.MapGet("/user", async (AppDbContext dbContext) =>
 {
