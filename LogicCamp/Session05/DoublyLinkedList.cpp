@@ -140,19 +140,56 @@ int main(){
         insertAtTail(head, tail, n);
     }
 
+    #pragma region checking methods
     // insertAtTail(head, tail, 10);
     // insertAtTail(head, tail, 20);
     // insertAtTail(head, tail, 30);
     // insertAtTail(head, tail, 40);
 
-    removeAtIndex(head, tail, 3);
+    // removeAtIndex(head, tail, 3);
     
-    printDLL(head);
-    
-    // insertAtIndex(head, tail, 0, 100);
-
     // printDLL(head);
-    printReverse(tail);
+    
+    // // insertAtIndex(head, tail, 0, 100);
+
+    // // printDLL(head);
+    // printReverse(tail);
+    #pragma endregion
+
+    #pragma region finding middle
+    // slow-fast pointer technique/tortoise-hare pointer technique
+    Node* i = head;
+    Node* j = head;
+
+    while(true){
+        if(i->next == nullptr){
+            cout << j->value << "\n";
+            return 0;
+        }else if(i->next->next == nullptr){
+            cout << j->value << " " << j->next->value << "\n";
+            return 0;
+        }
+        i = i->next->next;
+        j = j->next;
+    }
+    #pragma endregion
+
+    #pragma region cycle detection
+    // //hare-tortoise technique
+    // Node* i =  head;
+    // Node* j = head;
+
+    // do{
+    //     if(i->next == nullptr || i->next->next == nullptr){
+    //         break;
+    //     }
+    //     i = i->next->next;
+    //     j = j->next;
+    // }while (i !=  j)
+    // if(i == j){
+    //     cout << "Cycle Found!\n";
+    // }
+    #pragma endregion
 
     return 0;
 }
