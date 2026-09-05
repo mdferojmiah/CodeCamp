@@ -1,0 +1,6 @@
+@dukaan.host_HostAddress = http://localhost:5295
+
+GET {{dukaan.host_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
