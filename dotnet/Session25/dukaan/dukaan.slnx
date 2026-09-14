@@ -1,0 +1,13 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/clean-architecture/">
+    <Project Path="clean-architecture/Dukaan.Application/Dukaan.Application.csproj" />
+    <Project Path="clean-architecture/Dukaan.Domain/Dukaan.Domain.csproj" />
+    <Project Path="clean-architecture/Dukaan.Host/Dukaan.Host.csproj" />
+    <Project Path="clean-architecture/Dukaan.Infrastructure/Dukaan.Infrastructure.csproj" />
+  </Folder>
+</Solution>

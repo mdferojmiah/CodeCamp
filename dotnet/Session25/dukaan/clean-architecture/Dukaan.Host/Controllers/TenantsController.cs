@@ -1,16 +1,16 @@
-using dukaan.host.Dtos;
-using dukaan.service.Dtos;
-using dukaan.service.Services;
+using Dukaan.Application.Features.Tenants.Dtos;
+using Dukaan.Application.Features.Tenants.Services;
+using Dukaan.Host.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
-namespace dukaan.host.Controllers;
+namespace Dukaan.Host.Controllers;
 
 [ApiController]
 [Route("[controller]")]
 public class TenantsController(ITenantService tenantService): ControllerBase
 {
     [HttpPost("register")]
-    public async Task<ActionResult> Register([FromForm]RegisterRequest request)
+    public async Task<ActionResult> Register(RegisterRequest request)
     {
         try
         {
