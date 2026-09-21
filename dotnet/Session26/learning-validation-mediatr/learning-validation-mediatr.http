@@ -1,0 +1,40 @@
+@learning_validation_mediatr_HostAddress = http://localhost:5058
+
+GET {{learning_validation_mediatr_HostAddress}}/api/products
+Accept: application/json
+
+###
+
+GET {{learning_validation_mediatr_HostAddress}}/api/products/4
+Accept: application/json
+
+###
+
+GET {{learning_validation_mediatr_HostAddress}}/api/products/999
+Accept: application/json
+
+###
+
+POST {{learning_validation_mediatr_HostAddress}}/api/products
+Content-Type: application/json
+
+{
+  "name": "macbook macbook",
+  "price": 99.99
+}
+
+###
+
+PUT {{learning_validation_mediatr_HostAddress}}/api/products/1
+Content-Type: application/json
+
+{
+  "name": "Laptop Pro",
+  "price": 1299.99
+}
+
+###
+
+DELETE {{learning_validation_mediatr_HostAddress}}/api/products/3
+
+###
