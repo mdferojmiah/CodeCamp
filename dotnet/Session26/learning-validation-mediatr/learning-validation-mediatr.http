@@ -19,8 +19,8 @@ POST {{learning_validation_mediatr_HostAddress}}/api/products
 Content-Type: application/json
 
 {
-  "name": "macbook macbook",
-  "price": 99.99
+  "name": "Macbook",
+  "price": 199.99
 }
 
 ###
