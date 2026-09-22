@@ -1,6 +1,5 @@
 using learning_validation_mediatr.Dtos;
 using learning_validation_mediatr.Features.Products.Commands;
-using learning_validation_mediatr.Services;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
