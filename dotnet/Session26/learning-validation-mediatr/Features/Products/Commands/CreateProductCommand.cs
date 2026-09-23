@@ -12,11 +12,11 @@ public class CreateProductCommandValidator: AbstractValidator<CreateProductComma
     public CreateProductCommandValidator()
     {
         RuleFor(x => x.Name)
-            .NotEmpty().WithMessage("[Fluentvalidation] Name can not be empty!")
-            .MaximumLength(10).WithMessage("[Fluentvalidation] name can not exceed 10 characters");
+            .NotEmpty().WithMessage("Name can not be empty!")
+            .MaximumLength(10).WithMessage("Name can not exceed 10 characters");
 
         RuleFor(x => x.Price)
-            .GreaterThan(0).WithMessage("[Fluentvalidation] Price can not be zero.");
+            .GreaterThan(0).WithMessage("Price can not be zero.");
     }
 }
 

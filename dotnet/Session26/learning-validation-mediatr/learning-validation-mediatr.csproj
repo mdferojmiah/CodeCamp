@@ -13,8 +13,4 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.8" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Products\Queries\" />
-  </ItemGroup>
-
 </Project>

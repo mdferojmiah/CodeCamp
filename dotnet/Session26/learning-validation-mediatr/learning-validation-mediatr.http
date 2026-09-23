@@ -5,7 +5,7 @@ Accept: application/json
 
 ###
 
-GET {{learning_validation_mediatr_HostAddress}}/api/products/4
+GET {{learning_validation_mediatr_HostAddress}}/api/products/3
 Accept: application/json
 
 ###
@@ -19,7 +19,7 @@ POST {{learning_validation_mediatr_HostAddress}}/api/products
 Content-Type: application/json
 
 {
-  "name": "Macbook macbook",
+  "name": "Macbook",
   "price": 1250.50
 }
 
@@ -29,8 +29,8 @@ PUT {{learning_validation_mediatr_HostAddress}}/api/products/1
 Content-Type: application/json
 
 {
-  "name": "Laptop Pro",
-  "price": 1299.99
+  "name": "Laptop Pro laptop",
+  "price": 0
 }
 
 ###
