@@ -1,0 +1,24 @@
+@learning_redis_HostAddress = http://localhost:5272
+
+GET {{learning_redis_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+##string practice
+
+POST {{learning_redis_HostAddress}}/learn-redis HTTP/1.1
+Content-Type: application/json
+
+{
+    "Key": "Product:55",
+    "Value": {
+        "name": "IPhone 18 pro",
+        "price": "160000"
+    },
+    "TtlSecounds": 60
+}
+
+###
+GET {{learning_redis_HostAddress}}/learn-redis/Product:55 HTTP/1.1
+Accept: application/json
