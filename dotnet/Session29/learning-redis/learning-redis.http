@@ -1,0 +1,104 @@
+@learning_redis_HostAddress = http://localhost:5272
+
+GET {{learning_redis_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+## string 
+
+POST {{learning_redis_HostAddress}}/string-example HTTP/1.1
+Content-Type: application/json
+
+{
+    "Key": "Product:55",
+    "Value": {
+        "name": "IPhone 18 pro",
+        "price": "160000"
+    },
+    "TtlSecounds": 60
+}
+
+###
+GET {{learning_redis_HostAddress}}/string-example/Product:55 HTTP/1.1
+Accept: application/json
+
+###
+
+## hash
+
+POST {{learning_redis_HostAddress}}/hash-example HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": "1",
+    "name": "Feroj Miah",
+    "email": "feroj@test.com"
+}
+
+###
+GET {{learning_redis_HostAddress}}/hash-example/1 HTTP/1.1
+Accept: application/json
+
+###
+
+## set
+POST {{learning_redis_HostAddress}}/set-example HTTP/1.1
+Content-Type: application/json
+
+{
+    "ip": "192.62.16.3"
+}
+
+###
+GET {{learning_redis_HostAddress}}/visitor/count HTTP/1.1
+Accept: application/json
+
+###
+
+## list
+POST {{learning_redis_HostAddress}}/list-example HTTP/1.1
+Content-Type: application/json
+
+{
+    "userId": "1",
+    "query": "micro-services"
+}
+
+###
+GET {{learning_redis_HostAddress}}/search/history?userid=1 HTTP/1.1
+Accept: application/json
+
+###
+
+## sorted set
+POST {{learning_redis_HostAddress}}/sorted-set-example HTTP/1.1
+Content-Type: application/json
+
+{
+    "productId": "product:100"
+}
+
+###
+GET {{learning_redis_HostAddress}}/sorted-set-example HTTP/1.1
+Accept: application/json
+
+
+###
+
+## lock
+POST {{learning_redis_HostAddress}}/lock-example/seed HTTP/1.1
+Content-Type: application/json
+
+{
+    "count": "10"
+}
+
+###
+GET {{learning_redis_HostAddress}}/lock-example/inventory HTTP/1.1
+Accept: application/json
+
+
+###
+POST {{learning_redis_HostAddress}}/lock-example/inventory/decrement HTTP/1.1
+Content-Type: application/json
