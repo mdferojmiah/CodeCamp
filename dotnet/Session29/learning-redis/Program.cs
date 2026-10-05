@@ -21,5 +21,14 @@ app.MapHealthChecks("/health");
 app.UseHttpsRedirection();
 
 app.MapControllers();
+
+var subcriber = app.Services
+    .GetRequiredService<IConnectionMultiplexer>()
+    .GetSubscriber();
+
+await subcriber.SubscribeAsync(RedisChannel.Literal("system-notifier"), (channel, message) =>
+{
+    Console.WriteLine($"Received Message: {message}");
+});
     
 app.Run();

@@ -102,3 +102,13 @@ Accept: application/json
 ###
 POST {{learning_redis_HostAddress}}/lock-example/inventory/decrement HTTP/1.1
 Content-Type: application/json
+
+###
+
+## pub/sub
+POST {{learning_redis_HostAddress}}/pubsub-example HTTP/1.1
+Content-Type: application/json
+
+{
+    "message": "Hello redis from pub/sub"
+}
