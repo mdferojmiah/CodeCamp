@@ -1,0 +1,6 @@
+@learning_socket_HostAddress = http://localhost:5285
+
+GET {{learning_socket_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
